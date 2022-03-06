@@ -74,14 +74,20 @@ public class MainActivity2 extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-    public void onBackPressed(){
-        Intent intent = new Intent(MainActivity2.this, MainActivity.class);
-        startActivity(intent);
-    }
 
-
+    /**
+     * There is no need of this method, the call back onback pressed will navigate back to last activity in backstack
+     */
+//    public void onBackPressed(){
+//        Intent intent = new Intent(MainActivity2.this, MainActivity.class);
+//        startActivity(intent);
+//    }
 
     // hide password
+
+    /**
+     * You can add the type of input in the XML file if you want to hide the password
+     */
     public class AsteriskPasswordTransformationMethod extends PasswordTransformationMethod {
         @Override
         public CharSequence getTransformation(CharSequence source, View view) {
@@ -104,11 +110,8 @@ public class MainActivity2 extends AppCompatActivity {
         }
     };
 
-
-
-
-        // password restriction validation
-        public boolean isValidPassword(final String password) {
+    // password restriction validation
+    public boolean isValidPassword(final String password) {
 
             Pattern pattern;
             Matcher matcher;
@@ -120,9 +123,6 @@ public class MainActivity2 extends AppCompatActivity {
 
             return matcher.matches();
         }
-
-
-
 
         //password and email validation
     public void checkForData() {
@@ -172,16 +172,15 @@ public class MainActivity2 extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
-                                Toast.makeText( MainActivity2.this, "Account has been created.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText( getBaseContext(), "Account has been created.", Toast.LENGTH_SHORT).show();
                             }else{
-                                Toast.makeText(MainActivity2.this, "Fail to register. Please try again.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getBaseContext(), "Fail to register. Please try again.", Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
                 }else {
-                    Toast.makeText(MainActivity2.this, "Fail to register. Please try again.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getBaseContext(), "Fail to register. Please try again.", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
     }
